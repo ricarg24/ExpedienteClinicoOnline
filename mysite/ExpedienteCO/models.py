@@ -240,7 +240,7 @@ class Paciente(models.Model):
     mes_nacimiento_paciente = models.IntegerField(blank=True, null=True)
     anio_nacimiento_paciente = models.IntegerField(blank=True, null=True)
     id_padre = models.ForeignKey('Padre', models.DO_NOTHING, db_column='id_padre', blank=True, null=True)
-    id_madre = models.ForeignKey('Padre', models.DO_NOTHING, db_column='id_madre', blank=True, null=True)
+    # id_madre = models.ForeignKey('Madre', models.DO_NOTHING, db_column='id_madre', blank=True, null=True)
     nombre1 = models.CharField(max_length=20)
     nombre2 = models.CharField(max_length=20)
     apellido1 = models.CharField(max_length=20)
