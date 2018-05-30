@@ -6,8 +6,9 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
-
+from django.contrib import admin
 from django.db import models
+
 
 
 class Aplicacionprocedimiento(models.Model):
@@ -268,7 +269,7 @@ class PacientePadeceEnfermedad(models.Model):
         db_table = 'paciente_padece_enfermedad'
         unique_together = (('id_enfermedad', 'id_paciente'),)
 
-
+###############################################################################
 class Padre(models.Model):
     id_padre = models.AutoField(primary_key=True)
     nombre1 = models.CharField(max_length=20)
@@ -281,10 +282,20 @@ class Padre(models.Model):
     dui = models.CharField(unique=True, max_length=15)
     genero = models.TextField()  # This field type is a guess.
 
-    class Meta:
-        managed = False
-        db_table = 'padre'
 
+    def __unicode__(self):
+        return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
+
+    class PadreAdmin(admin.ModelAdmin):
+        list_display = ('nombre1', 'apellido1')
+        list_filter = (
+            ('apellido1', admin.RelatedOnlyFieldListFilter))
+
+    class Meta:
+        db_table = 'padre'
+        managed = False
+        verbose_name_plural = "Mantenimiento informacion de Padres"
+#######################################################################################################
 
 class PadrePadeceEnfermedad(models.Model):
     id_enfermedad = models.ForeignKey(Enfermedad, models.DO_NOTHING, db_column='id_enfermedad', primary_key=True)
@@ -443,6 +454,7 @@ class Tipoexamen(models.Model):
     class Meta:
         managed = False
         db_table = 'tipoexamen'
+
 
 
 class Tipomedicamento(models.Model):
