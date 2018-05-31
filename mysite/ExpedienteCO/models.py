@@ -286,15 +286,12 @@ class Padre(models.Model):
     def __unicode__(self):
         return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
 
-    class PadreAdmin(admin.ModelAdmin):
-        list_display = ('nombre1', 'apellido1')
-        list_filter = (
-            ('apellido1', admin.RelatedOnlyFieldListFilter))
+
 
     class Meta:
         db_table = 'padre'
         managed = False
-        verbose_name_plural = "Mantenimiento informacion de Padres"
+        verbose_name_plural = "Informacion Padre de Paciente"
 #######################################################################################################
 
 class PadrePadeceEnfermedad(models.Model):

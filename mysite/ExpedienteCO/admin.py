@@ -5,10 +5,7 @@ from .models import Padre
 
 
 
-
 admin.site.register(Padre)
-
-
 
 
 
