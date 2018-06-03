@@ -291,7 +291,7 @@ class Padre(models.Model):
     class Meta:
         db_table = 'padre'
         managed = False
-        verbose_name_plural = "Mantenimiento informacion de Padres"
+        verbose_name_plural = "Informacion Padre de Paciente"
 #######################################################################################################
 
 class PadrePadeceEnfermedad(models.Model):

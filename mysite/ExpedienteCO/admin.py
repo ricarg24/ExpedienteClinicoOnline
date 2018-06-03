@@ -5,11 +5,8 @@ from .models import Padre,Paciente
 
 
 
-
 admin.site.register(Padre)
 admin.site.register(Paciente)
-
-
 
 
 
