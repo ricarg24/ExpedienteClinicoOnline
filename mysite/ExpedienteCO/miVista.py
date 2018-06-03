@@ -54,5 +54,5 @@ def AgregarPadre(request):
             #redirige al registro de doctor usando una url que envia los parametros a la siguiente función
             return redirect('miTemplate',nombre1=nombre1,nombre2=nombre2,apellido1=apellido1,apellido2=apellido2,dui=duiP,division=division,subdivision=subdivision,sexo=sexo)
     else:
-        formulario1=FormAgregarPadre(prefix="pru1")
-        return render(request,'miTemplate.html',{'form1':formulario1})
+         formulario1=FormAgregarPadre(prefix="pru1")
+         return render(request,'miTemplate.html',{'form1':formulario1})

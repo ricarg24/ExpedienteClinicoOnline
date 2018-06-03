@@ -1,13 +1,13 @@
 
 
 from django.contrib import admin
-from .models import Padre
+from .models import Padre,Paciente
 
 
 
 
 admin.site.register(Padre)
-
+admin.site.register(Paciente)
 
 
 

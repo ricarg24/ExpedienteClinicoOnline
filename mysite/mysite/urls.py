@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+ #se importa la vista
+from ExpedienteCO.miVista import  AgregarPadre #se importa la vista
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+
+#aqui se pone la url para acceder a la vista
+    url(r'^ingresarPadre/$',AgregarPadre,name='AgregarPadre'),
 ]

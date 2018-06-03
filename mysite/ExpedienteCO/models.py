@@ -6,7 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
-from django.contrib import admin
+
 from django.db import models
 
 
@@ -286,10 +286,7 @@ class Padre(models.Model):
     def __unicode__(self):
         return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
 
-    class PadreAdmin(admin.ModelAdmin):
-        list_display = ('nombre1', 'apellido1')
-        list_filter = (
-            ('apellido1', admin.RelatedOnlyFieldListFilter))
+
 
     class Meta:
         db_table = 'padre'
@@ -501,11 +498,12 @@ class Ubicacion(models.Model):
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='id_rol', blank=True, null=True)
-    username = models.CharField(max_length=25)
-    password = models.CharField(max_length=50)
+    nombre_usuario = models.CharField(max_length=12)
+    nombres_usuario = models.CharField(max_length=80)
+    apellidos_usuario = models.CharField(max_length=40)
     estado = models.BooleanField()
-    last_login = models.DateField(blank=True, null=True)
-
+    contrasenia = models.DateField(blank=True, null=True)
+    confirmar_contrasenia = models.DateField(blank=True, null=True)
     class Meta:
         managed = False
         db_table = 'usuario'

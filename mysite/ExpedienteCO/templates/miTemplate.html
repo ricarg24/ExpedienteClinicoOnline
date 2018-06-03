@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+		<!--block content se usa para herencia de otra plantilla-->
+	    {% block content %}
+        <title>Agregar Padre</title>
+    </head>
+    <body>
+	<div class="container-fluid borderT2" style="margin: 0px 150px 0px 120px; padding: 10px">
+
+		<center><h2>Agregar Padre</h2></center>
+		<div class="form-group">
+		    <!--creamos el formulario-->
+			<form action="." method="post">{% csrf_token %}
+				<br>
+				<center><h4>Datos de Persona</h4></center>
+				<div style="margin-left: 0px">
+				<table class="table table-striped">
+				<tr>
+					<!--form1 es el nombre del formulario que enviamos por medio de la vista-->
+					<!--por ejemplo form1.nombre.errors hace referencia al input creado en miFormulario-->
+					<th scope="col"><strong>* Nombres:</strong></th><th>{{form1.nombre1.errors}} {{form1.nombre1}}</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				    <th scope="col"><strong>* Apellidos:</strong></th><th>{{form1.apellido1.errors}} {{form1.apellido1}}</th>
+				</tr>
+				<tr>
+					<th scope="col"><strong>* DUI:</strong></th><th>{{form1.dui.errors}} {{form1.dui}}</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th scope="col"><strong>* Sexo:</strong></th><th>{{form1.sexo.errors}} {{form1.sexo}}</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+                    <th></th>
+				</tr>
+				</table>
+				</div>
+				<p>
+				<center><h4>Telefonos de Contacto</h4></center>
+				<table class="table table-striped">
+				<tr>
+
+				</table>
+
+				</table>
+				<!--si hay errores se muestran aqui-->
+				{% if form1.non_field_errors%}
+				<div class="alert alert-danger" role="alert">
+                    <center><strong>&nbsp;<p>Por favor corrija lo siguiente:</p></strong></center>
+					<center><label><strong>{{form1.non_field_errors}}</strong></label></center>
+				</div>
+				{% endif %}
+				<div class="form-group">
+					<input style="margin-left:30%;" type="submit"  class="btn btn-primary" value="Siguiente">
+					<input type="button" style="margin-left:20%"  type="submit" class="btn btn-primary" value="Regresar">
+				</div>
+				<div class="form-gropup">
+					<center><strong><font size="1" color="#E45213">Campos con * son obligatorios</font></strong></center>
+				</div>
+    		</form>
+
+		</div>
+        <div>{% if z %}
+                <p>Datos guardados</p>
+            {% endif %}
+            {% if p %}
+                <p>Error al guardar datos</p>
+            {% endif %}
+        </div>
+	</div>
+    </body>
+	<script type="text/javascript">
+
+		jQuery(function($){
+			$(".maskinput").mask("99999999-9");
+		});
+     </script>
+	  {% endblock content %}
+</html>
