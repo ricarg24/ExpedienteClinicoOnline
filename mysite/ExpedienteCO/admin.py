@@ -1,12 +1,13 @@
 
 
 from django.contrib import admin
-from .models import Padre,Paciente
+from .models import Padre,Paciente,Aplicacionprocedimiento
 
 
 
 admin.site.register(Padre)
 admin.site.register(Paciente)
+admin.site.register(Aplicacionprocedimiento)
 
 
 

@@ -22,6 +22,7 @@ class Aplicacionprocedimiento(models.Model):
     class Meta:
         managed = False
         db_table = 'aplicacionprocedimiento'
+        verbose_name_plural = "Aplicacion Procedimiento"
 
 
 class Asignacionexamen(models.Model):
