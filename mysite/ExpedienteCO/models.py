@@ -306,7 +306,7 @@ class Padre(models.Model):
     def __str__(self):
         return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
 
-    Padre.objects.filter(n_comments__gt=Padre('apellido1'))
+
      
     class Meta:
         ordering = ["nombre1"]
