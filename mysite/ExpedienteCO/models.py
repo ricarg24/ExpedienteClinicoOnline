@@ -23,7 +23,7 @@ class Aplicacionprocedimiento(models.Model):
         managed = False
         db_table = 'aplicacionprocedimiento'
         verbose_name_plural = "Aplicacion Procedimiento"
-
+###################################################################################################################################
 
 class Asignacionexamen(models.Model):
     id_asignacion_examen = models.AutoField(primary_key=True)
@@ -39,6 +39,8 @@ class Asignacionexamen(models.Model):
     class Meta:
         managed = False
         db_table = 'asignacionexamen'
+        verbose_name_plural = "Asignacion de examen"
+###################################################################################################################################
 
 
 class Cirugia(models.Model):
@@ -50,6 +52,8 @@ class Cirugia(models.Model):
     class Meta:
         managed = False
         db_table = 'cirugia'
+        verbose_name_plural = "Registro de Cirugias de pacientes"
+###################################################################################################################################
 
 
 class Cita(models.Model):
@@ -67,6 +71,8 @@ class Cita(models.Model):
     class Meta:
         managed = False
         db_table = 'cita'
+        verbose_name_plural = "Control de Citas"
+###################################################################################################################################
 
 
 class Consulta(models.Model):
@@ -78,6 +84,8 @@ class Consulta(models.Model):
     class Meta:
         managed = False
         db_table = 'consulta'
+        verbose_name_plural = "Registro de Consultas por cliente"
+###################################################################################################################################
 
 
 class Emergencia(models.Model):
@@ -96,6 +104,8 @@ class Emergencia(models.Model):
     class Meta:
         managed = False
         db_table = 'emergencia'
+        verbose_name_plural = "Control de Emergencias"
+###################################################################################################################################
 
 
 class Empleado(models.Model):
@@ -118,6 +128,8 @@ class Empleado(models.Model):
     class Meta:
         managed = False
         db_table = 'empleado'
+        verbose_name_plural = "Registro de Empleados"
+###################################################################################################################################
 
 
 class Enfermedad(models.Model):
@@ -128,8 +140,8 @@ class Enfermedad(models.Model):
     class Meta:
         managed = False
         db_table = 'enfermedad'
-
-
+        verbose_name_plural = "Registro de Enfermedades"
+###################################################################################################################################
 class EnfermedadJoinConsulta(models.Model):
     id_enfermedad = models.ForeignKey(Enfermedad, models.DO_NOTHING, db_column='id_enfermedad', primary_key=True)
     id_realizacion_consulta = models.ForeignKey('Realizacionconsulta', models.DO_NOTHING, db_column='id_realizacion_consulta')
@@ -138,7 +150,8 @@ class EnfermedadJoinConsulta(models.Model):
         managed = False
         db_table = 'enfermedad_join_consulta'
         unique_together = (('id_enfermedad', 'id_realizacion_consulta'), ('id_enfermedad', 'id_realizacion_consulta'),)
-
+        verbose_name_plural = "Consultas por Enfermedad"
+###################################################################################################################################
 
 class Especialidad(models.Model):
     id_especialidad = models.AutoField(primary_key=True)
@@ -148,8 +161,8 @@ class Especialidad(models.Model):
     class Meta:
         managed = False
         db_table = 'especialidad'
-
-
+        verbose_name_plural = "Registro de Especialidades"
+###################################################################################################################################
 class Examen(models.Model):
     id_examen = models.AutoField(primary_key=True)
     id_tipo_examen = models.ForeignKey('Tipoexamen', models.DO_NOTHING, db_column='id_tipo_examen', blank=True, null=True)
@@ -160,8 +173,8 @@ class Examen(models.Model):
     class Meta:
         managed = False
         db_table = 'examen'
-
-
+        verbose_name_plural = "Registro de Examenes"
+###################################################################################################################################
 class Expediente(models.Model):
     id_expediente = models.AutoField(primary_key=True)
     id_paciente = models.IntegerField()
@@ -176,8 +189,8 @@ class Expediente(models.Model):
     class Meta:
         managed = False
         db_table = 'expediente'
-
-
+        verbose_name_plural = "Control de Expedientes"
+###################################################################################################################################
 class Ingreso(models.Model):
     id_ingreso = models.AutoField(primary_key=True)
     id_paciente = models.IntegerField(blank=True, null=True)
@@ -195,7 +208,8 @@ class Ingreso(models.Model):
     class Meta:
         managed = False
         db_table = 'ingreso'
-
+        verbose_name_plural = "Ingreso de Paciente"
+###################################################################################################################################
 
 class Medicamento(models.Model):
     id_medicamento = models.AutoField(primary_key=True)
@@ -207,7 +221,8 @@ class Medicamento(models.Model):
     class Meta:
         managed = False
         db_table = 'medicamento'
-
+        verbose_name_plural = "Control de Medicamentos"
+###################################################################################################################################
 
 class Medico(models.Model):
     id_medico = models.AutoField(primary_key=True)
@@ -217,8 +232,8 @@ class Medico(models.Model):
     class Meta:
         managed = False
         db_table = 'medico'
-
-
+        verbose_name_plural = "Registro de Medicos"
+###################################################################################################################################
 class Menu(models.Model):
     id_menu = models.AutoField(primary_key=True)
     icono = models.CharField(max_length=40, blank=True, null=True)
@@ -229,8 +244,8 @@ class Menu(models.Model):
     class Meta:
         managed = False
         db_table = 'menu'
-
-
+        verbose_name_plural = "Menu"
+###################################################################################################################################
 class Paciente(models.Model):
     id_paciente = models.AutoField(primary_key=True)
     id_responsable = models.ForeignKey('Responsable', models.DO_NOTHING, db_column='id_responsable')
@@ -259,8 +274,8 @@ class Paciente(models.Model):
     class Meta:
         managed = False
         db_table = 'paciente'
-
-
+        verbose_name_plural = "Control de Pacientes"
+###################################################################################################################################
 class PacientePadeceEnfermedad(models.Model):
     id_enfermedad = models.ForeignKey(Enfermedad, models.DO_NOTHING, db_column='id_enfermedad', primary_key=True)
     id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='id_paciente')
@@ -269,8 +284,13 @@ class PacientePadeceEnfermedad(models.Model):
         managed = False
         db_table = 'paciente_padece_enfermedad'
         unique_together = (('id_enfermedad', 'id_paciente'),)
-
+        verbose_name_plural = "Control de Pacientes por Enfermedad"
+###################################################################################################################################
 ###############################################################################
+class Entry(object):
+    pass
+
+
 class Padre(models.Model):
     id_padre = models.AutoField(primary_key=True)
     nombre1 = models.CharField(max_length=20)
@@ -283,13 +303,13 @@ class Padre(models.Model):
     dui = models.CharField(unique=True, max_length=15)
     genero = models.TextField()  # This field type is a guess.
 
-
-    def __unicode__(self):
+    def __str__(self):
         return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
 
-
-
+    Padre.objects.filter(n_comments__gt=Padre('apellido1'))
+     
     class Meta:
+        ordering = ["nombre1"]
         db_table = 'padre'
         managed = False
         verbose_name_plural = "Informacion Padre de Paciente"
@@ -303,7 +323,8 @@ class PadrePadeceEnfermedad(models.Model):
         managed = False
         db_table = 'padre_padece_enfermedad'
         unique_together = (('id_enfermedad', 'id_padre'),)
-
+        verbose_name_plural = "Expediente de Responsables Por Enfermedad"
+###################################################################################################################################
 
 class Procedimiento(models.Model):
     id_procedimiento = models.AutoField(primary_key=True)
@@ -314,7 +335,8 @@ class Procedimiento(models.Model):
     class Meta:
         managed = False
         db_table = 'procedimiento'
-
+        verbose_name_plural = "Procedimientos"
+###################################################################################################################################
 
 class Realizacioncirugia(models.Model):
     id_realizacion_cirugia = models.AutoField(primary_key=True)
@@ -335,7 +357,8 @@ class Realizacioncirugia(models.Model):
     class Meta:
         managed = False
         db_table = 'realizacioncirugia'
-
+        verbose_name_plural = "Citas por Cliente"
+###################################################################################################################################
 
 class Realizacionconsulta(models.Model):
     id_realizacion_consulta = models.AutoField(primary_key=True)
@@ -349,6 +372,8 @@ class Realizacionconsulta(models.Model):
     class Meta:
         managed = False
         db_table = 'realizacionconsulta'
+        verbose_name_plural = "Control de Consultas"
+###################################################################################################################################
 
 
 class RealizacionconsultaJoinCita(models.Model):
@@ -359,7 +384,8 @@ class RealizacionconsultaJoinCita(models.Model):
         managed = False
         db_table = 'realizacionconsulta_join_cita'
         unique_together = (('id_cita', 'id_realizacion_consulta'), ('id_cita', 'id_realizacion_consulta'),)
-
+        verbose_name_plural = "Registro de consulta por cita"
+###################################################################################################################################
 
 class Recetamedica(models.Model):
     id_receta_medica = models.AutoField(primary_key=True)
@@ -371,7 +397,8 @@ class Recetamedica(models.Model):
     class Meta:
         managed = False
         db_table = 'recetamedica'
-
+        verbose_name_plural = "Control de Recetas Medicas"
+###################################################################################################################################
 
 class Recursomultimedia(models.Model):
     id_recurso_multimedia = models.AutoField(primary_key=True)
@@ -383,7 +410,8 @@ class Recursomultimedia(models.Model):
     class Meta:
         managed = False
         db_table = 'recursomultimedia'
-
+        verbose_name_plural = "Control de Registros multimedia"
+###################################################################################################################################
 
 class Responsable(models.Model):
     nombre1 = models.CharField(max_length=20)
@@ -401,6 +429,8 @@ class Responsable(models.Model):
     class Meta:
         managed = False
         db_table = 'responsable'
+        verbose_name_plural = "Control de Responsable por Paciente"
+###################################################################################################################################
 
 
 class Rol(models.Model):
@@ -411,8 +441,8 @@ class Rol(models.Model):
     class Meta:
         managed = False
         db_table = 'rol'
-
-
+        verbose_name_plural = "Ingreso de Roles"
+###################################################################################################################################
 class RolAccedeAMenu(models.Model):
     id_menu = models.ForeignKey(Menu, models.DO_NOTHING, db_column='id_menu', primary_key=True)
     id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='id_rol')
@@ -426,8 +456,8 @@ class RolAccedeAMenu(models.Model):
         managed = False
         db_table = 'rol_accede_a_menu'
         unique_together = (('id_menu', 'id_rol'), ('id_menu', 'id_rol'),)
-
-
+        verbose_name_plural = "Acceso a Menu por Rol"
+###################################################################################################################################
 class Signosvitales(models.Model):
     peso = models.FloatField()
     temperatura = models.FloatField(blank=True, null=True)
@@ -442,7 +472,8 @@ class Signosvitales(models.Model):
     class Meta:
         managed = False
         db_table = 'signosvitales'
-
+        verbose_name_plural = "Signos Vitales del Paciente"
+###################################################################################################################################
 
 class Tipoexamen(models.Model):
     id_tipo_examen = models.AutoField(primary_key=True)
@@ -452,7 +483,8 @@ class Tipoexamen(models.Model):
     class Meta:
         managed = False
         db_table = 'tipoexamen'
-
+        verbose_name_plural = "Registro de Tipo de Examen"
+###################################################################################################################################
 
 
 class Tipomedicamento(models.Model):
@@ -462,8 +494,8 @@ class Tipomedicamento(models.Model):
     class Meta:
         managed = False
         db_table = 'tipomedicamento'
-
-
+        verbose_name_plural = "Tipos de Medicamentos"
+###################################################################################################################################
 class Tipoubicacion(models.Model):
     id_tipo_ubicacion = models.AutoField(primary_key=True)
     nombre_tipo_ubicacion = models.CharField(max_length=25, blank=True, null=True)
@@ -471,6 +503,8 @@ class Tipoubicacion(models.Model):
     class Meta:
         managed = False
         db_table = 'tipoubicacion'
+        verbose_name_plural = "Tipo de Ubicacion"
+###################################################################################################################################
 
 
 class Tratamiento(models.Model):
@@ -481,6 +515,8 @@ class Tratamiento(models.Model):
     class Meta:
         managed = False
         db_table = 'tratamiento'
+        verbose_name_plural = "Registro de Tratamiento por Paciente"
+###################################################################################################################################
 
 
 class Ubicacion(models.Model):
@@ -494,7 +530,8 @@ class Ubicacion(models.Model):
     class Meta:
         managed = False
         db_table = 'ubicacion'
-
+        verbose_name_plural = "Ubicaciones"
+###################################################################################################################################
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
@@ -508,3 +545,5 @@ class Usuario(models.Model):
     class Meta:
         managed = False
         db_table = 'usuario'
+        verbose_name_plural = "Usuarios del Sistema"
+###################################################################################################################################
