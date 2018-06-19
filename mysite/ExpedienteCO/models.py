@@ -186,6 +186,9 @@ class Expediente(models.Model):
     anio_expiracion_expediente = models.IntegerField(blank=True, null=True)
     numero_expediente = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.numero_expediente)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'expediente'
@@ -357,7 +360,7 @@ class Realizacioncirugia(models.Model):
     class Meta:
         managed = False
         db_table = 'realizacioncirugia'
-        verbose_name_plural = "Citas por Cliente"
+        verbose_name_plural = "Cirugia por Cliente"
 ###################################################################################################################################
 
 class Realizacionconsulta(models.Model):
@@ -527,6 +530,8 @@ class Ubicacion(models.Model):
     numero = models.IntegerField(blank=True, null=True)
     nombre_ubicacion = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.codigo_ubicacion, self.nombre_ubicacion)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'ubicacion'
