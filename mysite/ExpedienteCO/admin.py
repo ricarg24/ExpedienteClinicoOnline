@@ -62,7 +62,7 @@ admin.site.register(Enfermedad,EnfermedadAdmin)
 class EnfermedadJoinConsultaAdmin(admin.ModelAdmin):
     list_display = ('id_enfermedad','id_realizacion_consulta',)
     search_fields = ('id_realizacion_consulta',)
-admin.site.register(EnfermedadJoinConsulta,EnfermedadJoinConsultaAdmin)
+#admin.site.register(EnfermedadJoinConsulta,EnfermedadJoinConsultaAdmin)
 class EspecialidadAdmin(admin.ModelAdmin):
     list_display = ('codigo_especialidad','nombre_especialidad',)
     search_fields = ('codigo_especialidad',)
@@ -106,7 +106,7 @@ admin.site.register(Realizacioncirugia,RealizacioncirugiaAdmin)
 class RealizacionconsultaAdmin(admin.ModelAdmin):
     list_display = ('id_realizacion_consulta','id_expediente','id_emergencia','id_ingreso','id_consulta',)
     search_fields = ('id_expediente',)
-admin.site.register(Realizacionconsulta,RealizacionconsultaAdmin)
+#admin.site.register(Realizacionconsulta,RealizacionconsultaAdmin)
 class RealizacionconsultaJoinCitaAdmin(admin.ModelAdmin):
     list_display = ('id_cita','id_realizacion_consulta',)
     search_fields = ('id_cita',)

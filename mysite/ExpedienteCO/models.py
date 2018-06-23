@@ -19,6 +19,8 @@ class Aplicacionprocedimiento(models.Model):
     mes_aplicacion_procedimienot = models.IntegerField(blank=True, null=True)
     anio_aplicacion_procedimiento = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.mes_aplicacion_procedimienot)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'aplicacionprocedimiento'
@@ -36,6 +38,9 @@ class Asignacionexamen(models.Model):
     mes_asignacion_examen = models.IntegerField(blank=True, null=True)
     anio_asignacion_examen = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.id_emergencia, self.resultado_obtenido)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'asignacionexamen'
@@ -48,7 +53,8 @@ class Cirugia(models.Model):
     codigo = models.CharField(max_length=15, blank=True, null=True)
     nombre = models.CharField(max_length=30, blank=True, null=True)
     costo = models.FloatField(blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s' % (self.codigo, self.nombre)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'cirugia'
@@ -67,7 +73,8 @@ class Cita(models.Model):
     hora = models.IntegerField(blank=True, null=True)
     minuto = models.IntegerField(blank=True, null=True)
     estado = models.IntegerField(blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s' % (self.id_paciente, self.id_medico)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'cita'
@@ -79,8 +86,9 @@ class Consulta(models.Model):
     id_especialidad = models.ForeignKey('Especialidad', models.DO_NOTHING, db_column='id_especialidad', blank=True, null=True)
     codigo = models.CharField(max_length=15, blank=True, null=True)
     nombre = models.CharField(max_length=30, blank=True, null=True)
-    costo = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-
+    costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    def __str__(self):
+        return '%s %s' % (self.codigo, self.nombre)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'consulta'
@@ -100,6 +108,9 @@ class Emergencia(models.Model):
     anio_emergencia = models.IntegerField(blank=True, null=True)
     hora_emergencia = models.IntegerField(blank=True, null=True)
     minuto_emergencia = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.sintomatologia_emergencia)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -125,6 +136,8 @@ class Empleado(models.Model):
     apellido_casada = models.CharField(max_length=20, blank=True, null=True)
     codigo_empleado = models.CharField(max_length=15, blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s %s' % (self.nombre1, self.apellido1,self.dui)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'empleado'
@@ -137,6 +150,9 @@ class Enfermedad(models.Model):
     codigo_enfermedad = models.CharField(max_length=15, blank=True, null=True)
     nombre_enfermedad = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.codigo_enfermedad, self.nombre_enfermedad)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'enfermedad'
@@ -145,6 +161,9 @@ class Enfermedad(models.Model):
 class EnfermedadJoinConsulta(models.Model):
     id_enfermedad = models.ForeignKey(Enfermedad, models.DO_NOTHING, db_column='id_enfermedad', primary_key=True)
     id_realizacion_consulta = models.ForeignKey('Realizacionconsulta', models.DO_NOTHING, db_column='id_realizacion_consulta')
+
+    def __str__(self):
+        return '%s %s' % (self.id_enfermedad, self.id_realizacion_consulta)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -158,6 +177,9 @@ class Especialidad(models.Model):
     codigo_especialidad = models.CharField(max_length=15, blank=True, null=True)
     nombre_especialidad = models.CharField(max_length=250, blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.codigo_especialidad, self.nombre_especialidad)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'especialidad'
@@ -169,6 +191,9 @@ class Examen(models.Model):
     codigo_examen = models.CharField(max_length=15, blank=True, null=True)
     nombre_examen = models.CharField(max_length=50, blank=True, null=True)
     costo_examen = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return '%s %s' % (self.codigo_examen, self.nombre_examen)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -187,7 +212,7 @@ class Expediente(models.Model):
     numero_expediente = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return '%s %s' % (self.id_expediente, self.numero_expediente)  # '%s %s' %
+        return '%s' % ( self.numero_expediente)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -208,6 +233,9 @@ class Ingreso(models.Model):
     mes_fin_ingreso = models.IntegerField(blank=True, null=True)
     anio_fin_ingreso = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.id_paciente, self.id_expediente)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'ingreso'
@@ -221,6 +249,9 @@ class Medicamento(models.Model):
     nombre_medicamento = models.CharField(max_length=50, blank=True, null=True)
     costo_medicamento = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.codigo_medicamento, self.nombre_medicamento)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'medicamento'
@@ -231,6 +262,9 @@ class Medico(models.Model):
     id_medico = models.AutoField(primary_key=True)
     id_especialidad = models.ForeignKey(Especialidad, models.DO_NOTHING, db_column='id_especialidad')
     id_empleado = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='id_empleado')
+
+    def __str__(self):
+        return '%s %s' % (self.id_medico, self.id_empleado)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -243,6 +277,7 @@ class Menu(models.Model):
     titulo = models.CharField(max_length=25, blank=True, null=True)
     url = models.CharField(max_length=250, blank=True, null=True)
     recurso = models.CharField(max_length=30, blank=True, null=True)
+
 
     class Meta:
         managed = False
@@ -274,6 +309,9 @@ class Paciente(models.Model):
     dui = models.CharField(unique=True, max_length=15, blank=True, null=True)
     genero = models.TextField()  # This field type is a guess.
 
+    def __str__(self):
+        return '%s %s %s' % (self.id_expediente, self.nombre1,self.apellido1)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'paciente'
@@ -282,6 +320,9 @@ class Paciente(models.Model):
 class PacientePadeceEnfermedad(models.Model):
     id_enfermedad = models.ForeignKey(Enfermedad, models.DO_NOTHING, db_column='id_enfermedad', primary_key=True)
     id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='id_paciente')
+
+    def __str__(self):
+        return '%s %s' % (self.id_enfermedad, self.id_paciente)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -335,6 +376,9 @@ class Procedimiento(models.Model):
     codigo_procedimiento = models.CharField(max_length=15, blank=True, null=True)
     costo_procedimiento = models.FloatField(blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.codigo_procedimiento, self.nombre_procedimiento)  # '%s %s' %
+
     class Meta:
         managed = False
         db_table = 'procedimiento'
@@ -356,6 +400,8 @@ class Realizacioncirugia(models.Model):
     min_inicio_realizacion_cirugia = models.IntegerField(blank=True, null=True)
     hora_fin_realizacion_cirugia = models.IntegerField(blank=True, null=True)
     minuto_fin_realizacion_cirugia = models.IntegerField(blank=True, null=True)
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.mes_realizacion_cirugia)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -372,6 +418,8 @@ class Realizacionconsulta(models.Model):
     observacones = models.CharField(max_length=1000, blank=True, null=True)
     sintom_realizacion_consulta = models.CharField(max_length=1000, blank=True, null=True)
 
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.sintom_realizacion_consulta)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'realizacionconsulta'
@@ -382,6 +430,9 @@ class Realizacionconsulta(models.Model):
 class RealizacionconsultaJoinCita(models.Model):
     id_cita = models.ForeignKey(Cita, models.DO_NOTHING, db_column='id_cita', primary_key=True)
     id_realizacion_consulta = models.ForeignKey(Realizacionconsulta, models.DO_NOTHING, db_column='id_realizacion_consulta')
+
+    def __str__(self):
+        return '%s %s' % (self.id_cita, self.id_realizacion_consulta)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -396,7 +447,8 @@ class Recetamedica(models.Model):
     id_medicamento = models.ForeignKey(Medicamento, models.DO_NOTHING, db_column='id_medicamento', blank=True, null=True)
     dosis = models.CharField(max_length=15, blank=True, null=True)
     frecuencia = models.CharField(max_length=20, blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s %s' % (self.id_medicamento, self.dosis,self.frecuencia)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'recetamedica'
@@ -409,6 +461,9 @@ class Recursomultimedia(models.Model):
     id_examen = models.ForeignKey(Examen, models.DO_NOTHING, db_column='id_examen', blank=True, null=True)
     data = models.BinaryField(blank=True, null=True)
     contentype = models.CharField(max_length=10, blank=True, null=True)
+
+    def __str__(self):
+        return '%s %s' % (self.id_procedimiento, self.id_examen)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -428,6 +483,9 @@ class Responsable(models.Model):
     tel_cel = models.CharField(max_length=15, blank=True, null=True)
     id_responsable = models.AutoField(primary_key=True)
     dui = models.CharField(max_length=15)
+
+    def __str__(self):
+        return '%s %s' % (self.nombre1, self.apellido1)  # '%s %s' %
 
     class Meta:
         managed = False
@@ -471,7 +529,8 @@ class Signosvitales(models.Model):
     mes = models.IntegerField()
     anio = models.IntegerField()
     id_expediente = models.ForeignKey(Expediente, models.DO_NOTHING, db_column='id_expediente')
-
+    def __str__(self):
+        return '%s %s' % (self.id_expediente, self.presion_arterial)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'signosvitales'
@@ -482,7 +541,8 @@ class Tipoexamen(models.Model):
     id_tipo_examen = models.AutoField(primary_key=True)
     nombre_tipo_examen = models.CharField(max_length=50, blank=True, null=True)
     codigo_tipo_examen = models.IntegerField(blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s' % (self.codigo_tipo_examen, self.nombre_tipo_examen)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'tipoexamen'
@@ -493,7 +553,8 @@ class Tipoexamen(models.Model):
 class Tipomedicamento(models.Model):
     id_tipo_medicamento = models.AutoField(primary_key=True)
     presentacion = models.CharField(max_length=25)
-
+    def __str__(self):
+        return '%s %s' % (self.id_tipo_medicamento, self.presentacion)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'tipomedicamento'
@@ -502,7 +563,8 @@ class Tipomedicamento(models.Model):
 class Tipoubicacion(models.Model):
     id_tipo_ubicacion = models.AutoField(primary_key=True)
     nombre_tipo_ubicacion = models.CharField(max_length=25, blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s' % (self.id_tipo_medicamento, self.presentacion)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'tipoubicacion'
@@ -514,7 +576,8 @@ class Tratamiento(models.Model):
     id_tratamiento = models.AutoField(primary_key=True)
     id_realizacion_consulta = models.ForeignKey(Realizacionconsulta, models.DO_NOTHING, db_column='id_realizacion_consulta', blank=True, null=True)
     recomendaciones = models.CharField(max_length=1000, blank=True, null=True)
-
+    def __str__(self):
+        return '%s %s' % (self.id_tratamiento, self.id_realizacion_consulta)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'tratamiento'
@@ -547,6 +610,8 @@ class Usuario(models.Model):
     estado = models.BooleanField()
     contrasenia = models.DateField(blank=True, null=True)
     confirmar_contrasenia = models.DateField(blank=True, null=True)
+    def __str__(self):
+        return '%s %s' % (self.id_usuario, self.nombre_usuario)  # '%s %s' %
     class Meta:
         managed = False
         db_table = 'usuario'

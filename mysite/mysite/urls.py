@@ -24,5 +24,5 @@ urlpatterns = [
 
 
 #aqui se pone la url para acceder a la vista
-    url(r'^ingresarPadre/$',AgregarPadre,name='AgregarPadre'),
+    #url(r'^ingresarPadre/$',AgregarPadre,name='AgregarPadre'),
 ]
